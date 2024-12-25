@@ -1,0 +1,12 @@
+project_name:
+    type: str
+    help: What is your project name?
+
+company_name:
+    type: str
+    help: What is your company name?
+
+bundle_id:
+    type: str
+    help: What is your bundle id?
+    default: "com.{{company_name|lower}}.{{project_name|lower}}"

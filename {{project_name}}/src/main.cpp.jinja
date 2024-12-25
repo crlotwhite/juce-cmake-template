@@ -1,0 +1,16 @@
+#include <juce_ConsoleApplication.h>
+
+int main (int argc, char* argv[])
+{
+    ConsoleApplication app;
+
+    app.addHelpCommand ("--help|-h", "Usage:", true);
+    app.addVersionCommand ("--version|-v", "{{project_name}} version 1.2.3");
+
+    app.addCommand ({ "--foo",
+                      "--foo filename",
+                      "Performs a foo operation on the given file",
+                      [] (const auto& args) { doFoo (args); }});
+
+    return app.findAndRunCommand (argc, argv);
+}

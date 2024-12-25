@@ -1,0 +1,36 @@
+cmake_minimum_required(VERSION 3.15)
+
+project({{project_name}} VERSION 1.0)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+file(
+  DOWNLOAD
+  https://github.com/cpm-cmake/CPM.cmake/releases/download/v0.38.3/CPM.cmake
+  ${CMAKE_CURRENT_BINARY_DIR}/cmake/CPM.cmake
+  EXPECTED_HASH SHA256=cc155ce02e7945e7b8967ddfaff0b050e958a723ef7aad3766d368940cb15494
+)
+include(${CMAKE_CURRENT_BINARY_DIR}/cmake/CPM.cmake)
+
+CPMAddPackage("gh:juce-framework/JUCE#8.0.4")
+
+juce_add_gui_app({{project_name}}
+    COMPANY_NAME "{{company_name}}"
+    BUNDLE_IDENTIFIER "{{bundle_id}}"
+    PRODUCT_NAME "{{project_name}}"
+)
+
+target_sources({{project_name}} PRIVATE
+    src/main.cpp
+    src/MainComponent.h
+    src/MainComponent.cpp
+)
+
+target_link_libraries({{project_name}} PRIVATE
+    juce::juce_core
+    juce::juce_data_structures
+    juce::juce_events
+)
+
+juce_generate_juce_header({{project_name}})
