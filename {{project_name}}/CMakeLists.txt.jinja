@@ -22,13 +22,19 @@ juce_add_gui_app({{project_name}}
 )
 
 target_sources({{project_name}} PRIVATE
-    src/main.cpp
+    src/Main.cpp
+    src/MainComponent.h
+    src/MainComponent.cpp
 )
 
 target_link_libraries({{project_name}} PRIVATE
     juce::juce_core
     juce::juce_data_structures
     juce::juce_events
+    juce::juce_graphics
+    juce::juce_gui_basics
+    juce::juce_gui_extra
+    juce::juce_audio_basics
 )
 
 juce_generate_juce_header({{project_name}})
